@@ -1,0 +1,318 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.fotij.userapplication.controller.CarChooserFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/open_close_list_linear"
+                android:background="@color/colorPrimary"
+                >
+                <TextView
+                    android:paddingLeft="10dp"
+                    android:id="@+id/branchname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="dfsfsdsfd"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/white"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/open_close_list"
+                    android:src="@drawable/ic_close_branch" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/search_sort_filter"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/colorPrimaryDark"
+                android:foregroundGravity="top"
+                android:padding="5dp"
+                >
+
+                <SearchView
+                    android:id="@+id/search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/white"
+                    android:queryHint="Cars"
+
+                    />
+                <!--android:iconifiedByDefault="false"-->
+
+                <Button
+                    android:id="@+id/sort"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/mbutton"
+
+                    android:text="sort"
+                    android:drawableLeft="@drawable/ic_sort2"
+                    />
+
+                <Button
+                    android:id="@+id/filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/mbutton"
+
+                    android:text="filter"
+                    android:drawableLeft="@drawable/ic_filter2"/>
+            </LinearLayout>
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/branchlistscroolview"
+                android:descendantFocusability="blocksDescendants"
+
+                >
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/branchrecyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
+            </android.support.v4.widget.NestedScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/branchDetails"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@android:color/black">
+
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardPreventCornerOverlap="false"
+
+
+                app:cardBackgroundColor="@android:color/black"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/branchimage"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:transitionName="branchImage"
+                            android:clickable="false"
+                            app:srcCompat="@drawable/rental" />
+                        <ProgressBar
+                            android:id="@+id/downloadProgressBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_centerHorizontal="true"/>
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_marginTop="2dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="4dp">
+                        <TextView
+                            android:id="@+id/cardBranchCity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:longClickable="false"
+                            android:text="Bet Shemesh nsdfsdfsdfrfgtfdgfd"
+                            android:textColor="@color/buttonClickedLightBlue"
+                            android:textSize="13sp"
+
+                            />
+                        <View
+                            android:id="@+id/line2"
+                            android:layout_width="169dp"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="4dp"
+                            android:background="#c0c0c0"
+                            android:clickable="false"
+                            android:longClickable="false"
+                            />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="4dp">
+                            <TextView
+                                android:id="@+id/branchrevenuetext"
+                                android:layout_width="99dp"
+                                android:layout_height="17dp"
+                                android:clickable="false"
+                                android:ems="10"
+                                android:inputType="textPersonName"
+                                android:textColor="@android:color/white"
+                                android:longClickable="false"
+                                android:text="branch revenue:" />
+                            <TextView
+                                android:layout_marginLeft="4dp"
+                                android:id="@+id/cardBranchRevenue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"
+                                android:longClickable="false"
+                                android:text="15,000$"
+                                android:textColor="@color/buttonClickedLightBlue"
+                                />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/numberofcarstext"
+                                android:layout_width="99dp"
+                                android:layout_height="17dp"
+                                android:clickable="false"
+                                android:ems="10"
+                                android:inputType="textPersonName"
+                                android:longClickable="false"
+                                android:text="number of cars:"
+                                android:textColor="@android:color/white"
+                                />
+                            <TextView
+                                android:layout_marginLeft="4dp"
+                                android:id="@+id/cardBranchCarNum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"
+                                android:longClickable="false"
+                                android:text="38"
+                                android:textColor="@color/buttonClickedLightBlue"
+                                />
+                        </LinearLayout>
+                        <View
+                            android:id="@+id/line1"
+                            android:layout_width="169dp"
+                            android:layout_height="1dp"
+                            android:background="#c0c0c0"
+                            android:clickable="false"
+                            android:longClickable="false"
+                            android:layout_marginTop="4dp"
+                            />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="8dp">
+                            <TextView
+                                android:id="@+id/Establisheddatetext"
+                                android:layout_width="72dp"
+                                android:layout_height="17dp"
+                                android:clickable="false"
+                                android:inputType="textPersonName"
+                                android:longClickable="false"
+                                android:text="Established date:"
+                                android:textColor="@android:color/white"
+                                />
+
+                            <TextView
+                                android:layout_marginLeft="4dp"
+                                android:id="@+id/EstablisheddateDate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="17dp"
+                                android:clickable="false"
+                                android:inputType="textPersonName"
+                                android:longClickable="false"
+                                android:text="#5677"
+                                android:textColor="@color/buttonClickedLightBlue"
+                                />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/parkingspotstext"
+                                android:textColor="@android:color/white"
+                                android:text="Parking spots:"/>
+                            <TextView
+                                android:layout_marginLeft="4dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/parkingspotsnumber"
+                                android:textColor="@color/buttonClickedLightBlue"
+                                android:text="88"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <android.support.v4.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/carinuseview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </android.support.v7.widget.RecyclerView>
+                </android.support.v4.widget.NestedScrollView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

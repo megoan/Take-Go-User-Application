@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#36989c</color>
+    <color name="colorPrimaryDark">#1d676a</color>
+    <color name="colorAccent">#40f8ff</color>
+    <color name="colorBlue">#426ef4</color>
+    <color name="cardBlue">#3029BAC4</color>
+    <color name="buttonClickedLightBlue">#99DDFF</color>
+    <color name="transbuttonClickedLightBlue">#8099DDFF</color>
+
+
+</resources>
