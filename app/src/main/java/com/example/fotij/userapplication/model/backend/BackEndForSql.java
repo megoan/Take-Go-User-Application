@@ -128,7 +128,10 @@ public class BackEndForSql implements BackEndFunc {
             e.printStackTrace();
         }
 
-        return result.get(0);
+        if (result.size()>0) {
+            return result.get(0);
+        }
+        else return null;
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -81,7 +82,7 @@ public class CarChooserFragment extends Fragment {
     TextView numofcars;
     TextView established;
     TextView parkingspots;
-
+    LinearLayout progressBar;
     String filter2;
     SearchView searchView;
     Button sort;
@@ -107,6 +108,7 @@ public class CarChooserFragment extends Fragment {
 
     private void init() {
         backEndFunc = FactoryMethod.getBackEndFunc(DataSourceType.DATA_INTERNET);
+        progressBar=view.findViewById(R.id.loadingBranches);
         new GetAllBranchFromWeb().execute();
         //
         search_sort_filter_layout = view.findViewById(R.id.search_sort_filter);
@@ -122,6 +124,7 @@ public class CarChooserFragment extends Fragment {
         branchDetails = view.findViewById(R.id.branchDetails);
         close_open = view.findViewById(R.id.open_close_list);
         branchname = view.findViewById(R.id.branchname);
+
         linearLayout_close_open.setVisibility(View.GONE);
 
         scrollView_branch.setVisibility(View.VISIBLE);
@@ -264,7 +267,7 @@ public class CarChooserFragment extends Fragment {
         Collections.sort(branches, new Comparator<Branch>() {
             public int compare(Branch o1, Branch o2) {
 
-                return String.valueOf(o1.getParkingSpotsNum()).compareTo(String.valueOf(o2.getParkingSpotsNum()));
+                return String.valueOf(o1.getCarIds().size()).compareTo(String.valueOf(o2.getCarIds().size()));
             }
         });
         branchAdapter.objects = branches;
@@ -323,6 +326,12 @@ public class CarChooserFragment extends Fragment {
 
     public class GetAllBranchFromWeb extends AsyncTask<Void, Void, Void> {
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
         protected Void doInBackground(Void... voids) {
             branches = backEndFunc.getAllBranches();
             return null;
@@ -333,6 +342,7 @@ public class CarChooserFragment extends Fragment {
             super.onPostExecute(aVoid);
             branchAdapter = new BranchRecyclerViewAdapter(branches, getActivity(), CarChooserFragment.this);
             recyclerViewBranch.setAdapter(branchAdapter);
+            progressBar.setVisibility(View.GONE);
         }
     }
 
@@ -396,6 +406,12 @@ public class CarChooserFragment extends Fragment {
             hashMap.remove(s);
         }
     }
-
+    public void showMap(Uri geoLocation) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(geoLocation);
+        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
 
 }

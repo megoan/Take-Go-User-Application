@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     String usernameclient;
     String passwordclient;
     CheckBox remembermebutton;
+    FrameLayout frameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.PasswordeditText);
         login = findViewById(R.id.Loginbutton);
         register = findViewById(R.id.RegistertextView);
+        frameLayout=findViewById(R.id.loadingAccount);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +74,12 @@ public class LoginActivity extends AppCompatActivity {
         int validationid;
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            frameLayout.setVisibility(View.VISIBLE);
+        }
+
+        @Override
         protected Void doInBackground(Void... voids) {
             validationid = backEndFunc.checkclient(usernameclient, passwordclient);
             return null;
@@ -79,13 +88,16 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+
             switch (validationid) {
                 case 0: {
+                    frameLayout.setVisibility(View.GONE);
                     Toast.makeText(LoginActivity.this, "Please enter the right password", Toast.LENGTH_LONG).show();
                     password.setText("");
                     return;
                 }
                 case -1: {
+                    frameLayout.setVisibility(View.GONE);
                     Toast.makeText(LoginActivity.this, "The username is incorrect", Toast.LENGTH_LONG).show();
                     username.setText("");
                     password.setText("");
@@ -96,7 +108,10 @@ public class LoginActivity extends AppCompatActivity {
                         saveSharedPreferences();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra(TakeNGoConst.ClientConst.ID, validationid);
+
+                    finish();
                     startActivity(intent);
+                    frameLayout.setVisibility(View.GONE);
                     return;
                 }
             }

@@ -6,13 +6,13 @@
         android:orderInCategory="100"
         android:title="Filter"
         android:icon="@drawable/ic_filter"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
     <item
         android:id="@+id/action_sort"
         android:orderInCategory="100"
         android:title="Sort"
         android:icon="@drawable/ic_sort"
-        app:showAsAction="ifRoom">
+        app:showAsAction="never">
     </item>
 
 

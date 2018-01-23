@@ -44,6 +44,7 @@ public class SplashActivity extends AppCompatActivity {
             super.onPostExecute(aVoid);
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             intent.putExtra(TakeNGoConst.ClientConst.ID, validationid);
+            finish();
             startActivity(intent);
             return;
         }
@@ -59,6 +60,7 @@ public class SplashActivity extends AppCompatActivity {
             new ValidateAsync().execute();
         } else {
             Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+            finish();
             startActivity(intent);
         }
     }

@@ -3,12 +3,14 @@ package com.example.fotij.userapplication.controller;
 import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.fotij.userapplication.R;
@@ -30,6 +32,7 @@ public class BranchRecyclerViewAdapter extends RecyclerView.Adapter<BranchRecycl
     private Context mContext;
     private CarChooserFragment carChooserFragment;
     MyFilter myFilter;
+    Branch branch;
 
     public BranchRecyclerViewAdapter(ArrayList<Branch> objects, Context context, CarChooserFragment carChooserFragment)
     {
@@ -46,16 +49,26 @@ public class BranchRecyclerViewAdapter extends RecyclerView.Adapter<BranchRecycl
     }
 
     @Override
-    public void onBindViewHolder(BranchRecyclerViewAdapter.ViewHolder holder, int position) {
-        final Branch branch = objects.get(position);
+    public void onBindViewHolder(BranchRecyclerViewAdapter.ViewHolder holder, final int position) {
+        branch = objects.get(position);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                branch = objects.get(position);
                 carChooserFragment.showBranchDetails(branch);
             }
         });
         holder.address.setText(branch.getMyAddress().getAddressName());
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                branch = objects.get(position);
+                String uri = "geo: "+String.valueOf(branch.getMyAddress().getLatitude()) + "," + String.valueOf(branch.getMyAddress().getLongitude());
+                Uri uri1=Uri.parse(uri);
+                carChooserFragment.showMap(uri1);
+            }
+        });
     }
 
     @Override
@@ -66,8 +79,10 @@ public class BranchRecyclerViewAdapter extends RecyclerView.Adapter<BranchRecycl
 
     static  class ViewHolder extends  RecyclerView.ViewHolder{
         TextView address;
+        ImageView imageView;
         public ViewHolder(View itemView) {
             super(itemView);
+            imageView=itemView.findViewById(R.id.imageviewmap);
             address=itemView.findViewById(R.id.textviewaddress);
         }
     }
@@ -92,7 +107,7 @@ public class BranchRecyclerViewAdapter extends RecyclerView.Adapter<BranchRecycl
                 ArrayList<Branch> filteredBranch = new ArrayList<Branch>();
                 for (Branch branch : branchArrayList) {
                     String s = (branch.getMyAddress().getAddressName());
-                    if (s.contains(charSequence.toString().toLowerCase()) || charSequence.toString().toLowerCase().contains(branch.getMyAddress().getLocality().toLowerCase())) {
+                    if (s.toLowerCase().startsWith(charSequence.toString().toLowerCase())|| s.toLowerCase().contains(charSequence.toString().toLowerCase()) || charSequence.toString().toLowerCase().toLowerCase().contains(branch.getMyAddress().getLocality().toLowerCase())) {
                         filteredBranch.add(branch);
                     }
                 }
