@@ -357,7 +357,9 @@ public class CarChooserFragment extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            choosedcars.clear();
             for (Car car : cars) {
+
                 if (branchShow.getCarIds().contains(car.getCarNum()) && !car.isInUse())
                     choosedcars.add(car);
             }

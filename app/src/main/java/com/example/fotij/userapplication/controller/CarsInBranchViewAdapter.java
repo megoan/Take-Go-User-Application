@@ -67,7 +67,7 @@ public class CarsInBranchViewAdapter extends RecyclerView.Adapter<CarsInBranchVi
     }
 
     @Override
-    public void onBindViewHolder(final CarsInBranchViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final CarsInBranchViewAdapter.ViewHolder holder, final int position) {
         car = objects.get(position);
         CarModel carModel = new CarModel();
         branchid = car.getBranchNum();
@@ -137,6 +137,7 @@ public class CarsInBranchViewAdapter extends RecyclerView.Adapter<CarsInBranchVi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                car=objects.get(position);
                 new BackGroundAddOrder().execute();
 
             }

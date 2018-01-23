@@ -3,98 +3,139 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.fotij.userapplication.controller.OrderFragment">
+    tools:context="com.example.fotij.userapplication.controller.OrderFragment"
+    android:padding="10dp"
+    android:background="@android:color/black"
+>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/cardBlue"
+        android:padding="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:visibility="invisible"
+            android:visibility="visible"
             android:id="@+id/hasorder">
-
-            <TextView
-                android:id="@+id/carNum"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@android:color/white"
-                android:fontFamily="sans-serif-condensed"
-                android:text="Car ID:" />
-
-            <TextView
-                android:id="@+id/carNumShow"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@android:color/white"
-                android:fontFamily="sans-serif-condensed"
-                android:text="" />
-
-            <TextView
-                android:id="@+id/dateStart"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@android:color/white"
-                android:fontFamily="sans-serif-condensed"
-                android:text="Start Date:" />
-
-            <TextView
-                android:id="@+id/dateStartShow"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@android:color/white"
-                android:fontFamily="sans-serif-condensed"
-                android:text="" />
-
-            <TextView
-                android:id="@+id/dateEnd"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@android:color/white"
-                android:fontFamily="sans-serif-condensed"
-                android:text="End Date:" />
-
-            <TextView
-                android:id="@+id/dateEndShow"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@android:color/white"
-                android:fontFamily="sans-serif-condensed"
-                android:text="" />
-
-            <TextView
-                android:id="@+id/mileageStart"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@android:color/white"
-                android:fontFamily="sans-serif-condensed"
-                android:text="Mileage Start:" />
-
-            <TextView
-                android:id="@+id/mileageStartShow"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_marginBottom="10dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:fontFamily="sans-serif-condensed"
-                android:inputType="number" />
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/carNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="Car ID:" />
 
-            <TextView
-                android:id="@+id/mileageEnd"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@android:color/white"
-                android:fontFamily="sans-serif-condensed"
-                android:text="Mileage End:" />
+                <TextView
+                    android:paddingLeft="8dp"
+                    android:id="@+id/carNumShow"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/colorAccent"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="112344566" />
+            </LinearLayout>
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_marginBottom="4dp">
+               <TextView
+                   android:id="@+id/dateStart"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:textColor="@android:color/white"
+                   android:fontFamily="sans-serif-condensed"
+                   android:text="Start Date:" />
 
-            <EditText
-                android:id="@+id/mileageEndShow"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@android:color/white"
-                android:fontFamily="sans-serif-condensed"
-                android:inputType="number" />
+               <TextView
+                   android:paddingLeft="10dp"
+                   android:id="@+id/dateStartShow"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:textColor="@color/colorAccent"
+                   android:fontFamily="sans-serif-condensed"
+                   android:text="" />
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_marginBottom="10dp">
+               <TextView
+                   android:id="@+id/dateEnd"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:textColor="@android:color/white"
+                   android:fontFamily="sans-serif-condensed"
+                   android:text="End Date:" />
+               <TextView
+                   android:paddingLeft="10dp"
+                   android:id="@+id/dateEndShow"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:textColor="@color/colorAccent"
+                   android:fontFamily="sans-serif-condensed"
+                   android:text="" />
+
+           </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp">
+                <TextView
+                    android:id="@+id/mileageStart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="Mileage Start:" />
+
+                <TextView
+                    android:paddingLeft="10dp"
+                    android:id="@+id/mileageStartShow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorAccent"
+                    android:fontFamily="sans-serif-condensed"
+                    android:inputType="number" />
+            </LinearLayout>
+
+         <LinearLayout
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:orientation="horizontal"
+             android:layout_marginBottom="10dp">
+             <TextView
+                 android:id="@+id/mileageEnd"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:textColor="@android:color/white"
+                 android:fontFamily="sans-serif-condensed"
+                 android:text="Mileage End:"
+                 android:layout_gravity="center"
+                 android:gravity="center"/>
+
+             <EditText
+                 android:layout_gravity="center"
+                 android:paddingLeft="10dp"
+                 android:id="@+id/mileageEndShow"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:textColor="@color/colorAccent"
+                 android:ems="10"/>
+         </LinearLayout>
+
+
 
             <TextView
                 android:id="@+id/gasRefill"
@@ -107,7 +148,9 @@
             <CheckBox
                 android:id="@+id/gasRefillShow"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/colorAccent"
+                />
 
             <TextView
                 android:id="@+id/litersFilled"
@@ -125,29 +168,57 @@
                 android:fontFamily="sans-serif-condensed"
                 android:inputType="number" />
 
-            <TextView
-                android:id="@+id/payment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@android:color/white"
-                android:fontFamily="sans-serif-condensed"
-                android:text="Payment:" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
 
-            <TextView
-                android:id="@+id/paymentShow"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@android:color/white"
-                android:fontFamily="sans-serif-condensed"
-                android:inputType="number" />
+                <TextView
+                    android:id="@+id/payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="Payment:" />
 
+                <TextView
+                    android:paddingLeft="10dp"
+                    android:id="@+id/paymentShow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/colorAccent"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text=""/>
+            </LinearLayout>
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="vertical">
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Rate your experience:"
+                   android:textColor="@android:color/white"/>
+               <RatingBar
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/clientRating"
+                   android:progressBackgroundTint="@android:color/black"/>
+           </LinearLayout>
             <Button
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
                 android:id="@+id/closeorderbutton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@android:color/white"
-                android:fontFamily="sans-serif-condensed"
-                android:text="Close Order" />
+                android:text="Close Order"
+                android:textColor="@color/colorAccent"
+                android:textSize="30sp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="270dp"
+                android:layout_height="60dp"
+                android:background="@drawable/button_shape"
+                android:drawableRight="@drawable/ic_loginn_arrow"/>
+
         </LinearLayout>
 
         <android.support.constraint.ConstraintLayout

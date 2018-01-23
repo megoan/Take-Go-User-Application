@@ -19,6 +19,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +60,7 @@ public class OrderFragment extends Fragment {
     EditText litersFilled;
     TextView payment;
     Button closeorder;
+    RatingBar ratingBar;
     int clientID = MainActivity.getclientID();
     Order myorder;
     LinearLayout hasorder;
@@ -81,7 +83,7 @@ public class OrderFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_order, container, false);
         hasorder = view.findViewById(R.id.hasorder);
         noorder = view.findViewById(R.id.noorder);
-
+        ratingBar=view.findViewById(R.id.clientRating);
         carnum = view.findViewById(R.id.carNumShow);
         litersFillTextView = view.findViewById(R.id.litersFilled);
         litersFillTextView.setVisibility(View.GONE);
@@ -204,7 +206,7 @@ public class OrderFragment extends Fragment {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                myorder.setDateEnd(String.valueOf(endDate));
+                                myorder.setDateEnd(String.valueOf(endDateString));
                                 myorder.setGasRefill(gasRefill.isChecked());
                                 if (litersFilled.getText().toString().compareTo("") != 0)
                                     myorder.setLitersFilled(Integer.valueOf(litersFilled.getText().toString()));
@@ -213,7 +215,14 @@ public class OrderFragment extends Fragment {
                                 myorder.setMileageEnd(Double.valueOf(mileageEnd.getText().toString()));
                                 myorder.setOrderOpen(false);
                                 myorder.setPayment(Float.valueOf(payment.getText().toString()));
+                                double rating=mycar.getRating();
+                                int numOfRating=mycar.getNumOfRatings();
+                                double clientRating=ratingBar.getRating();
+                                double newRating=(rating*numOfRating+clientRating)/(numOfRating+1);
+                                mycar.setRating(newRating);
+                                mycar.setNumOfRatings(numOfRating+1);
                                 mycar.setInUse(false);
+                                mycar.setMileage(Double.valueOf(mileageEnd.getText().toString()));
                                 new UpdateAndCloseOrderAsync().execute();
                             }
                         }).create().show();
