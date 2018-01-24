@@ -64,7 +64,7 @@ public class OrderFragment extends Fragment {
     int clientID = MainActivity.getclientID();
     Order myorder;
     LinearLayout hasorder;
-    ConstraintLayout noorder;
+    LinearLayout noorder;
     Car mycar;
     View view;
 
