@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -15,6 +16,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     BackEndFunc backEndFunc = FactoryMethod.getBackEndFunc(DataSourceType.DATA_INTERNET);
     MySqlDataSource mySqlDataSource;
     int i=0;
+
     LocationManager locationManagerInternet;
     LocationManager locationManagerGPS;
     LocationListener locationListener;
@@ -113,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     static TextView carCardNumberOfRatings;
     static ImageView image_car;
     LinearLayout linearLayout;
+    public static LinearLayout loadingCarLayout;
     static ProgressBar progressBar;
     ImageView down_and_up;
     TextView more_less_text;
@@ -124,13 +128,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     static TextView address;
     ImageView imageView;
     Button orderNow;
+     Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         activity=this;
-
+        intent=new Intent(this,MyService.class);
         cheapLayout=findViewById(R.id.cheapLayout);
 
         name = findViewById(R.id.nameinfo);
@@ -152,10 +157,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         progressBar = findViewById(R.id.downloadProgressBarCar);
         down_and_up = findViewById(R.id.down_and_up_button);
         more_less_text = findViewById(R.id.more_less_info_text);
-
+        loadingCarLayout=findViewById(R.id.loadingCar);
+        loadingCarLayout.setVisibility(View.VISIBLE);
         imageView=findViewById(R.id.imageviewmap);
         address=findViewById(R.id.textviewaddress);
-
+        cheapLayout.setVisibility(View.GONE);
         orderNow=findViewById(R.id.orderNow);
         orderNow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
        if(branch==null){
-           cheapLayout.setVisibility(View.GONE);
+           //cheapLayout.setVisibility(View.GONE);
        }
 
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -356,13 +362,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_sort) {
+        if (id == R.id.Log_out) {
+            Intent intent=new Intent(this,LoginActivity.class);
+            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.commit();
+            finish();
+            startActivity(intent);
+
             return true;
         }
-        else if (id==R.id.action_filter)
-        {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -458,7 +470,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if(i==1)
         {
-            Intent intent=new Intent(this,MyService.class);
+            //Intent intent=new Intent(this,MyService.class);
             startService(intent);
         }
 
@@ -498,10 +510,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         i++;
         if(i==1)
         {
-            startService(new Intent(this,MyService.class));
+            startService(intent);
         }
 
-        Toast.makeText(getApplicationContext(),"Latitude: "+mLastLocation.getLatitude()+" "+"Longtidude: "+mLastLocation.getLongitude(),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"Latitude: "+mLastLocation.getLatitude()+" "+"Longtidude: "+mLastLocation.getLongitude(),Toast.LENGTH_SHORT).show();
         getGoogleLocation();
     }
     @Override
@@ -510,6 +522,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onStart();
         if (googleApiClient != null) {
             googleApiClient.connect();
+
         }
 
         // getGoogleLocation();
@@ -526,8 +539,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             }
         }
-        Intent intent = new Intent(MainActivity.this, MyService.class);
+        //Intent intent = new Intent(MainActivity.this, MyService.class);
         stopService(intent);
+        CheapestCar.cheapestCar=new Car();
+        CheapestCar.originalCarModel=new CarModel();
+        //CheapestCar.location=null;
+        CheapestCar.originalBranch=new Branch();
+        i=0;
         super.onStop();
     }
 
@@ -600,7 +618,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static void updateView(Car car, CarModel carModel, Branch branchShow) {
         if (otherFragment==false) {
             cheapLayout.setVisibility(View.VISIBLE);
+
         }
+
         branch=branchShow;
         address.setText(branch.getMyAddress().getAddressName());
 
@@ -619,7 +639,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         carCardRating.setText(String.valueOf(car.getRating()));
         carCardNumberOfRatings.setText(String.valueOf(car.getNumOfRatings()));
 
-
+        //loadingCarLayout.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
         Glide.with(activity)
                 .load(car.getImgURL())
@@ -631,12 +651,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     @Override
                     public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
                         progressBar.setVisibility(View.GONE);
+                        loadingCarLayout.setVisibility(View.GONE);
                         return false; // important to return false so the error placeholder can be placed
                     }
 
                     @Override
                     public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
                         progressBar.setVisibility(View.GONE);
+                        loadingCarLayout.setVisibility(View.GONE);
                         return false;
                     }
                 })

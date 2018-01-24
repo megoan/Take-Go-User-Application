@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.fotij.userapplication.controller.MainActivity"
-    tools:showIn="@layout/app_bar_main">
-
+    tools:showIn="@layout/app_bar_main"
+    android:orientation="vertical">
     <FrameLayout
         android:id="@+id/frame"
         android:layout_width="match_parent"
@@ -19,12 +19,29 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
         <LinearLayout
+
             android:id="@+id/cheapLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
 
             android:orientation="vertical"
             android:layout_gravity="center">
+            <LinearLayout
+                android:id="@+id/loadingCar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Loading cheapest car..."
+                    android:textColor="@color/colorAccent"/>
+            </LinearLayout>
             <TextView
                 android:padding="10dp"
                 android:layout_width="wrap_content"

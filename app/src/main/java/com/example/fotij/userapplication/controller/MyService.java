@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.widget.Toast;
 
 import com.example.fotij.userapplication.model.backend.BackEndFunc;
 import com.example.fotij.userapplication.model.backend.DataSourceType;
@@ -56,17 +57,20 @@ public class MyService extends IntentService {
     @Override
     public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
         isRun = true;
+        Toast.makeText(MyService.this,"service started",Toast.LENGTH_LONG).show();
+        //return START_NOT_STICKY;
         return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
+
         Thread thread = new Thread() {
             @Override
             public void run() {
                 while (isRun) {
                     try {
-                        if (foundCheaperCar())
+                        if (CheapestCar.location!=null &&foundCheaperCar())
                             sendBroadcast(new Intent(getBaseContext(), MainActivity.MyReceiver.class));
                         Thread.sleep(10000);
                     } catch (InterruptedException e) {
@@ -164,6 +168,14 @@ public class MyService extends IntentService {
         double tt = Math.acos(t1 + t2 + t3);
 
         return 6366000 * tt;
+    }
+
+    @Override
+    public void onDestroy() {
+        isRun=false;
+        Toast.makeText(MyService.this,"service stopped",Toast.LENGTH_LONG).show();
+        super.onDestroy();
+
     }
 }
 

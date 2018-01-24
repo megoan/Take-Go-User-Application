@@ -40,7 +40,9 @@
 
         <!--Service declared in manifest -->
         <service android:name=".controller.MyService"
-            android:exported="false"/>
+            android:exported="false">
+
+        </service>
         <receiver android:name=".controller.MainActivity$MyReceiver"/>
     </application>
 

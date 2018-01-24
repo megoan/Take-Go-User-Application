@@ -12,7 +12,7 @@ import com.example.fotij.userapplication.model.entities.CarModel;
 
 public class CheapestCar {
     public static Car cheapestCar=new Car();
-    public static Location location;
+    public static Location location=null;
     public static Branch originalBranch=new Branch();
 
     public static CarModel originalCarModel=new CarModel();
