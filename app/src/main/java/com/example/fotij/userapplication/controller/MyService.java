@@ -57,7 +57,7 @@ public class MyService extends IntentService {
     @Override
     public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
         isRun = true;
-        Toast.makeText(MyService.this,"service started",Toast.LENGTH_LONG).show();
+        //Toast.makeText(MyService.this,"service started",Toast.LENGTH_LONG).show();
         //return START_NOT_STICKY;
         return super.onStartCommand(intent, flags, startId);
     }
@@ -173,7 +173,7 @@ public class MyService extends IntentService {
     @Override
     public void onDestroy() {
         isRun=false;
-        Toast.makeText(MyService.this,"service stopped",Toast.LENGTH_LONG).show();
+       // Toast.makeText(MyService.this,"service stopped",Toast.LENGTH_LONG).show();
         super.onDestroy();
 
     }

@@ -176,13 +176,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String uri = "geo: "+String.valueOf(branch.getMyAddress().getLatitude()) + "," + String.valueOf(branch.getMyAddress().getLongitude());
+                String uri = "http://maps.google.com/maps?q="+branch.getMyAddress().getAddressName();
+                Uri uri1=Uri.parse(uri);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri1);
+                //intent.setData(geoLocation);
+                intent.setPackage("com.google.android.apps.maps");
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+               /* String uri = "geo: "+String.valueOf(branch.getMyAddress().getLatitude()) + "," + String.valueOf(branch.getMyAddress().getLongitude());
                 Uri uri1=Uri.parse(uri);
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(uri1);
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
-                }
+                }*/
             }
         });
         down_and_up.setOnClickListener(new View.OnClickListener() {

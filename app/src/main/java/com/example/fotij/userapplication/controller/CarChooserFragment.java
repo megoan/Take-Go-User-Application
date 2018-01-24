@@ -426,8 +426,9 @@ public class CarChooserFragment extends Fragment {
         }
     }
     public void showMap(Uri geoLocation) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(geoLocation);
+        Intent intent = new Intent(Intent.ACTION_VIEW,geoLocation);
+        //intent.setData(geoLocation);
+        intent.setPackage("com.google.android.apps.maps");
         if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
             startActivity(intent);
         }

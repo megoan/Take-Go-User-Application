@@ -64,7 +64,7 @@ public class BranchRecyclerViewAdapter extends RecyclerView.Adapter<BranchRecycl
             @Override
             public void onClick(View view) {
                 branch = objects.get(position);
-                String uri = "geo: "+String.valueOf(branch.getMyAddress().getLatitude()) + "," + String.valueOf(branch.getMyAddress().getLongitude());
+                String uri = "http://maps.google.com/maps?q="+branch.getMyAddress().getAddressName();
                 Uri uri1=Uri.parse(uri);
                 carChooserFragment.showMap(uri1);
             }
