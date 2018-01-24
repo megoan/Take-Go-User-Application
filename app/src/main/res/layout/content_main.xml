@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,6 +17,44 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:id="@+id/cheapLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-</android.support.constraint.ConstraintLayout>
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="THE CHEAPEST CAR NEAR YOU!"
+                android:textColor="@color/colorAccent"
+                android:gravity="center"/>
+            <include layout="@layout/car_card_layout"/>
+            <LinearLayout
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <include layout="@layout/branch_layout"/>
+            </LinearLayout>
+            <Button
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:id="@+id/orderNow"
+                android:text="order now!"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="270dp"
+                android:layout_height="60dp"
+                android:background="@drawable/button_shape"
+
+                />
+        </LinearLayout>
+    </FrameLayout>
+
+
+
+</LinearLayout>

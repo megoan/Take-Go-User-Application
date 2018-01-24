@@ -139,5 +139,18 @@ public class Car {
         this.inUse = inUse;
     }
 
+    public static boolean compareTwoCars(Car c1,Car c2){
+        if(c1.getCarNum()!=c2.getCarNum() ||
+                c1.getCarModel()!=c2.getCarModel()||
+                c1.getOneKilometerCost()!=c2.getOneKilometerCost()||
+                c1.getBranchNum()!=c2.getBranchNum()||
+                c1.getImgURL()!=c2.getImgURL()||
+                c1.getMileage()!=c2.getMileage()||
+                c1.getOneDayCost()!=c2.getOneDayCost()||
+                c1.getRating()!=c2.getRating()||
+                c1.getNumOfRatings()!=c2.getNumOfRatings()||
+                c1.getYear()!=c2.getYear())return false;
+        return true;
+    }
 }
 

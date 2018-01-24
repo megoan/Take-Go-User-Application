@@ -27,6 +27,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -275,6 +276,22 @@ public class CarChooserFragment extends Fragment {
     }
 
     private void sortBranchByDistance() {
+        if(MainActivity.mLastLocation==null)
+        {
+            Toast.makeText(getActivity(),"please turn on your gps!",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            final double myLocationLatitude=MainActivity.mLastLocation.getLatitude();
+            final double myLocationLongitude=MainActivity.mLastLocation.getLongitude();
+            Collections.sort(branches, new Comparator<Branch>() {
+                public int compare(Branch o1, Branch o2) {
+
+                    return new Double(meterDistanceBetweenPoints(o1.getMyAddress().getLatitude(),o1.getMyAddress().getLongitude(),myLocationLatitude, myLocationLongitude)).compareTo(new Double(meterDistanceBetweenPoints(o2.getMyAddress().getLatitude(),o2.getMyAddress().getLongitude(),myLocationLatitude,myLocationLongitude)));
+                }
+            });
+            branchAdapter.objects = branches;
+            branchAdapter.notifyDataSetChanged();
+        }
 
     }
 
@@ -416,4 +433,19 @@ public class CarChooserFragment extends Fragment {
         }
     }
 
+    public double meterDistanceBetweenPoints(double lat_a, double lng_a, double lat_b, double lng_b) {
+        double pk = (double) (180.f / Math.PI);
+
+        double a1 = lat_a / pk;
+        double a2 = lng_a / pk;
+        double b1 = lat_b / pk;
+        double b2 = lng_b / pk;
+
+        double t1 = Math.cos(a1) * Math.cos(a2) * Math.cos(b1) * Math.cos(b2);
+        double t2 = Math.cos(a1) * Math.sin(a2) * Math.cos(b1) * Math.sin(b2);
+        double t3 = Math.sin(a1) * Math.sin(b1);
+        double tt = Math.acos(t1 + t2 + t3);
+
+        return 6366000 * tt;
+    }
 }

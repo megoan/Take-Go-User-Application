@@ -17,12 +17,6 @@ public class MySqlDataSource extends DataSource {
     @Override
     public void initialize() {
         BackEndFunc backEndFunc = FactoryMethod.getBackEndFunc(DataSourceType.DATA_INTERNET);
-        //clientList = backEndFunc.getAllClients();
-        //carModelList=backEndFunc.getAllCarModels();
-        //carList = backEndFunc.getAllCars();
-       // userList=backEndFunc.getAllUsers();
-        //carModelList = backEndFunc.getAllCarModels();
-       // branchList = backEndFunc.getAllBranches();
     }
 }
 
