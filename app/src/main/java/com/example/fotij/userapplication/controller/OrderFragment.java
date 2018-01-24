@@ -346,7 +346,7 @@ public class OrderFragment extends Fragment {
             Toast.makeText(getActivity(), "Order has been closed", Toast.LENGTH_SHORT).show();
             LinearLayout hasorder = view.findViewById(R.id.hasorder);
             hasorder.setVisibility(View.INVISIBLE);
-            ConstraintLayout noorder = view.findViewById(R.id.noorder);
+            LinearLayout noorder = view.findViewById(R.id.noorder);
             noorder.setVisibility(View.VISIBLE);
         }
     }
