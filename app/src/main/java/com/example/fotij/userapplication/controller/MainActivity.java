@@ -589,19 +589,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     public static class MyReceiver extends BroadcastReceiver {
         boolean update=false;
         public MyReceiver() {
