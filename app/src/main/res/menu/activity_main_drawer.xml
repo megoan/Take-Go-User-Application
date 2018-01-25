@@ -4,11 +4,7 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/home"
-            android:icon="@drawable/ic_home_screan"
-            android:title="Home"
-            />
+
         <item
             android:id="@+id/nav_info"
             android:icon="@drawable/ic_info_and_contacts"
@@ -23,6 +19,11 @@
             android:id="@+id/nav_order"
             android:icon="@drawable/ic_order"
             android:title="My Order" />
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/ic_cheapest"
+            android:title="Cheapest"
+            />
         <item
             android:id="@+id/nav_Exit"
             android:icon="@drawable/ic_exit"

@@ -87,7 +87,7 @@ public class MyService extends IntentService {
         boolean foundNewCar=false;
         BackEndFunc backEndFunc = FactoryMethod.getBackEndFunc(DataSourceType.DATA_INTERNET);
         branches = backEndFunc.getAllBranches();
-
+        sortBranchByDistance();
         if (branches.size() > 0) {
             int i = 0;
             for (; i < branches.size(); i++) {

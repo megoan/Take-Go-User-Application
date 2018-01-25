@@ -172,6 +172,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
        if(branch==null){
            //cheapLayout.setVisibility(View.GONE);
        }
+        otherFragment=true;
+        cheapLayout.setVisibility(View.GONE);
+        setTitle("Car Selector");
+        CarChooserFragment carChooserFragment = new CarChooserFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frame, carChooserFragment, "fragment 2");
+        fragmentTransaction.commit();
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
