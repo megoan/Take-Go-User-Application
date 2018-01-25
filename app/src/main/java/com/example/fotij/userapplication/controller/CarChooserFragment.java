@@ -94,7 +94,7 @@ public class CarChooserFragment extends Fragment {
     ArrayList<String>branchesCitiesSet=new ArrayList<>();
     Set<String> b;
     public Map<String,Boolean>branchesCom=new HashMap<String, Boolean>();
-
+    ImageView branchMap;
     public CarChooserFragment() {
         // Required empty public constructor
     }
@@ -125,7 +125,7 @@ public class CarChooserFragment extends Fragment {
         branchDetails = view.findViewById(R.id.branchDetails);
         close_open = view.findViewById(R.id.open_close_list);
         branchname = view.findViewById(R.id.branchname);
-
+        branchMap=view.findViewById(R.id.branchMap);
         linearLayout_close_open.setVisibility(View.GONE);
 
         scrollView_branch.setVisibility(View.VISIBLE);
@@ -147,7 +147,16 @@ public class CarChooserFragment extends Fragment {
         recyclerViewBranch.setLayoutManager(BranchLayoutManager);
         recyclerViewCar.setLayoutManager(CarLayoutManager);
 
-
+        branchMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(branchShow!=null){
+                    String uri = "http://maps.google.com/maps?q="+branchShow.getMyAddress().getAddressName();
+                    Uri uri1=Uri.parse(uri);
+                    showMap(uri1);
+                }
+            }
+        });
         //recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         close_open.setOnClickListener(new View.OnClickListener() {
             @Override

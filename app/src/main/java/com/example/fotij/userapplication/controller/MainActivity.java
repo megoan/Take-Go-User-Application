@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     static TextView address;
     ImageView imageView;
     Button orderNow;
-     Intent intent;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -710,7 +710,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 alert.show();
                 //carChooserFragment.makeAnOrder(car);
             } else
-                Toast.makeText(MainActivity.this, "One order per client only", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "you already have one so if i were you i would leave and take another", Toast.LENGTH_SHORT).show();
 
 
         }
