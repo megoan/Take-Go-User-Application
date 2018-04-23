@@ -686,7 +686,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Order");
                 builder.setMessage("Are you sure you want to make an order?" + "\n" + "Car ID: "
-                        + firstCar.getCarNum() + "\n" + "Mileage: " + firstCar.getMileage() + "\n" + "One day cost: " + firstCar.getOneDayCost());
+                        + CheapestCar.cheapestCar.getCarNum() + "\n" + "Mileage: " + CheapestCar.cheapestCar.getMileage() + "\n" + "One day cost: " + CheapestCar.cheapestCar.getOneDayCost());
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -694,9 +694,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                         int month=calendar.get(Calendar.MONTH);
                         MyDate date = new MyDate(calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.YEAR));
-                        order = new Order(clientID, true, firstCar.getCarNum(), date.dd_mm_yyyy(),
-                                "", firstCar.getMileage(), -1, false, -1, -1, -1);
-                        firstCar.setInUse(true);
+                        order = new Order(clientID, true, CheapestCar.cheapestCar.getCarNum(), date.dd_mm_yyyy(),
+                                "", CheapestCar.cheapestCar.getMileage(), -1, false, -1, -1, -1);
+                        CheapestCar.cheapestCar.setInUse(true);
                         new BackGroundNewOrder().execute();
                     }
                 });

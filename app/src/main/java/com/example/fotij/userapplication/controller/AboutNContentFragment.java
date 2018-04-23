@@ -50,7 +50,7 @@ public class AboutNContentFragment extends Fragment {
                 intent.putExtra(intent.EXTRA_EMAIL,"yosef.mehrzadi@gmail.com");
                 intent.putExtra(intent.EXTRA_SUBJECT,"Hello TakeNGo");
                 //intent.putExtra(intent.EXTRA_TEXT,"Hello TakeNGo");
-                intent.setType("message/rfc822");
+                intent.setType("application/octet-stream");
                 Intent chooser=intent.createChooser(intent,"Send Email");
                 startActivity(chooser);
             }
